@@ -1,0 +1,92 @@
+--- compiler.vim.old	2012-02-09 09:14:37.884604856 +0100
++++ compiler.vim	2012-02-09 09:30:50.758076533 +0100
+@@ -22,47 +22,54 @@
+ 
+ 	let targetRule = Tex_GetVarValue('Tex_'.a:type.'Rule_'.target)
+ 
+-	if targetRule != ''
+-		if a:type == 'Compile'
+-			let &l:makeprg = escape(targetRule, Tex_GetVarValue('Tex_EscapeChars'))
+-		elseif a:type == 'View'
+-			let s:viewer = targetRule
+-		endif
+-		let s:target = target
++	let curd = getcwd()
++	exe 'cd '.expand('%:p:h')
++	if !Tex_GetVarValue('Tex_UseMakefile') || (glob('makefile*') == '' && glob('Makefile*') == '')
++		if targetRule != ''
++			if a:type == 'Compile'
++				let &l:makeprg = escape(targetRule, Tex_GetVarValue('Tex_EscapeChars'))
++			elseif a:type == 'View'
++				let s:viewer = targetRule
++			endif
++			let s:target = target
+ 
+-	elseif Tex_GetVarValue('Tex_'.a:type.'RuleComplete_'.target) != ''
+-		let s:target = target
++		elseif Tex_GetVarValue('Tex_'.a:type.'RuleComplete_'.target) != ''
++			let s:target = target
++		else
+ 
+-	elseif a:type == 'View' && has('macunix')
+-		" On the mac, we can have empty view rules, so do not complain when
+-		" both Tex_ViewRule_target and Tex_ViewRuleComplete_target are
+-		" empty. On other platforms, we will complain... see below.
+-		let s:target = target
++		elseif a:type == 'View' && has('macunix')
++			" On the mac, we can have empty view rules, so do not complain when
++			" both Tex_ViewRule_target and Tex_ViewRuleComplete_target are
++			" empty. On other platforms, we will complain... see below.
++			let s:target = target
+ 
+-	else
+-		let s:origdir = fnameescape(getcwd())
+-		exe 'cd '.fnameescape(expand('%:p:h'))
+-		if !Tex_GetVarValue('Tex_UseMakefile') || (glob('makefile*') == '' && glob('Makefile*') == '')
+-			if has('gui_running')
+-				call confirm(
+-					\'No '.a:type.' rule defined for target '.target."\n".
+-					\'Please specify a rule in $VIMRUNTIME/ftplugin/tex/texrc'."\n".
+-					\'     :help Tex_'.a:type.'Rule_format'."\n".
+-					\'for more information',
+-					\"&ok", 1, 'Warning')
++		else
++			let s:origdir = fnameescape(getcwd())
++			exe 'cd '.fnameescape(expand('%:p:h'))
++			if !Tex_GetVarValue('Tex_UseMakefile') || (glob('makefile*') == '' && glob('Makefile*') == '')
++				if has('gui_running')
++					call confirm(
++								\'No '.a:type.' rule defined for target '.target."\n".
++								\'Please specify a rule in $VIMRUNTIME/ftplugin/tex/texrc'."\n".
++								\'     :help Tex_'.a:type.'Rule_format'."\n".
++								\'for more information',
++								\"&ok", 1, 'Warning')
++				else
++					call input( 
++								\'No '.a:type.' rule defined for target '.target."\n".
++								\'Please specify a rule in $VIMRUNTIME/ftplugin/tex/texrc'."\n".
++								\'     :help Tex_'.a:type.'Rule_format'."\n".
++								\'for more information'
++								\)
++				endif
+ 			else
+-				call input( 
+-					\'No '.a:type.' rule defined for target '.target."\n".
+-					\'Please specify a rule in $VIMRUNTIME/ftplugin/tex/texrc'."\n".
+-					\'     :help Tex_'.a:type.'Rule_format'."\n".
+-					\'for more information'
+-					\)
++				echomsg 'Assuming target is for makefile'
++				let s:target = target
+ 			endif
+-		else
+-			echomsg 'Assuming target is for makefile'
+-			let s:target = target
++			exe 'cd '.s:origdir
+ 		endif
+-		exe 'cd '.s:origdir
++	else
++		exe 'cd '.curd
+ 	endif
+ endfunction 
+ 
