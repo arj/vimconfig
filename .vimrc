@@ -107,6 +107,14 @@ if has("autocmd")
    autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal `\"" | endif
  endif
 
+ " Store folds and such
+ au BufWinLeave * silent! mkview
+ au BufWinEnter * silent! loadview
+
+ augroup vimrc
+   au BufReadPre * setlocal foldmethod=indent
+   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+ augroup END
 endif " has("autocmd")
 
 " map <C-M> :!make<CR>
@@ -154,4 +162,4 @@ set shiftwidth=4
 
 " Options for latex-suite
 let g:Tex_UseMakefile=1
-let s:ECuseAltKeys=1
+
