@@ -115,6 +115,11 @@ if has("autocmd")
    au BufReadPre * setlocal foldmethod=indent
    au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
  augroup END
+
+
+ augroup erlang
+	 autocmd BufReadPost *.core set filetype=erlang
+ augroup END
 endif " has("autocmd")
 
 " map <C-M> :!make<CR>
