@@ -168,3 +168,9 @@ set shiftwidth=4
 " Options for latex-suite
 let g:Tex_UseMakefile=1
 
+nnoremap <silent> <C-a> :CommandT<CR>
+
+set so=7
+
+map <space> /
+map <c-space> ?

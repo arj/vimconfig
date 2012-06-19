@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/jakobro/.cabal/share/doc/fclabels-1.1.0.2'
-let g:netrw_dirhist_2='/home/jakobro/.vim/syntax_checkers'
-let g:netrw_dirhist_3='/home/jakobro/projects/mygitness/build'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/jakobro/projects'
+let g:netrw_dirhist_2='/home/jakobro/projects/proglangUtils'
+let g:netrw_dirhist_3='/home/jakobro/projects/pmrsabstraction/src'
+let g:netrw_dirhist_4='/usr/local/lib/ocaml/3.12.0/oUnit'
+let g:netrw_dirhist_5='/home/jakobro/projects/mozilla-aurora-apc/js/src/build-debug/dist/include'
+let g:netrw_dirhist_6='/home/jakobro/projects/mozilla-aurora-apc/js/src/build-debug/dist/include/js'
+let g:netrw_dirhist_7='/home/jakobro/projects/mozilla-aurora-apc/js/src/build-debug/dist/system_wrappers_js'
