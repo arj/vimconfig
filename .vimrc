@@ -144,7 +144,7 @@ map <F6> :nohl<CR>
 
 " Compilation stuff
 map <F5> :make<CR>
-map <F2> :make<CR>
+map <F3> :make<CR>
 map cn <esc>:cn<cr>
 map cp <esc>:cp<cr>
 set autowrite
