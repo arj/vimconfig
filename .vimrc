@@ -157,7 +157,7 @@ map <F6> :nohl<CR>
 
 " Compilation stuff
 map <F5> :make<CR>
-map <F2> :make<CR>
+map <F3> :make<CR>
 map cn <esc>:cn<cr>
 map cp <esc>:cp<cr>
 set autowrite
@@ -171,3 +171,8 @@ let g:Tex_UseMakefile=1
 set so=7
 
 set switchbuf=useopen
+
+nnoremap <silent> <C-a> :CommandT<CR>
+
+map <space> /
+map <c-space> ?
