@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/jakobro/.cabal/share/doc/fclabels-1.1.0.2'
-let g:netrw_dirhist_2='/home/jakobro/.vim/syntax_checkers'
-let g:netrw_dirhist_3='/home/jakobro/projects/mygitness/build'
