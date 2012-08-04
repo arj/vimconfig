@@ -168,3 +168,6 @@ set shiftwidth=4
 " Options for latex-suite
 let g:Tex_UseMakefile=1
 
+set so=7
+
+set switchbuf=useopen
